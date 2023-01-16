@@ -9,9 +9,16 @@ import { Article } from 'src/app/Interfaces';
 export class ArticleComponent implements OnInit {
 
   constructor() { }
+  button:string = 'MOSTRAR GALERIA';
+  stateButton:boolean = false;
   @Input() distrito!: any;
   @Input() i!: number;
 
   ngOnInit() {}
+
+  hideButton(){
+   this.stateButton = !this.stateButton
+   this.button = this.stateButton ? 'OCULTAR GALERIA' : 'MOSTRAR GALERIA';
+  }
 
 }

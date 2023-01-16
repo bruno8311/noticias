@@ -59,6 +59,7 @@ export class Tab1Page implements OnInit{
       next: ((data:Departments[])=>{
               this.listDepartamento=data;
               this.isLoadingDepartamento = false;
+              data.map(()=>{})
             }),
       error: ((err: any)=>{this.isLoadingDepartamento = false})   }
     )

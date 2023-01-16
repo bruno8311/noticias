@@ -19,3 +19,12 @@ export interface Source {
   id?:   string;
   name: string;
 }
+
+export interface Galeria {
+  datasetid:        {};
+  recordid:         string;
+  fields:           {};
+  geometry:         {};
+  record_timestamp: Date;
+  img:              string;
+}

@@ -1,19 +1,30 @@
 <ion-card>
-
   <ion-card-subtitle class="ion-padding">
-    <span class="text-primary">{{i}}. </span>
-    <span>{{distrito.nombre}}</span>
+    <span class="text-primary">{{ i }}. </span>
+    <span>{{ distrito.nombre }}</span>
   </ion-card-subtitle>
 
   <ion-card-title class="ion-padding-horizontal ion-padding-bottom">
-    {{distrito.nombre}}
+    {{ distrito.nombre }}
   </ion-card-title>
 
   <!-- <ion-img *ngIf="distrito.url" [src]="distrito.url"></ion-img> -->
 
   <ion-card-content>
     <!-- <p>{{article.description}}</p> -->
-    <p>El distrito de {{distrito.nombre}} es dolor sit amet consectetur, adipisicing elit. Quaerat ullam voluptates nulla vitae id adipisci dignissimos officia soluta, obcaecati enim ducimus, quisquam possimus explicabo provident. Blanditiis quam voluptatem soluta sunt?</p>
+    <p>
+      El distrito de {{ distrito.nombre }} es dolor sit amet consectetur,
+      adipisicing elit. Quaerat ullam voluptates nulla vitae id adipisci
+      dignissimos officia soluta, obcaecati enim ducimus, quisquam possimus
+      explicabo provident. Blanditiis quam voluptatem soluta sunt?
+    </p>
   </ion-card-content>
-
+  <ion-button shape="round" (click)="hideButton()">{{
+    button | translate
+  }}</ion-button>
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let item of distrito.img">
+      <ion-img *ngIf="stateButton === true" [src]="item"></ion-img>
+    </ion-slide>
+  </ion-slides>
 </ion-card>

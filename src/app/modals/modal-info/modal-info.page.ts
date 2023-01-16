@@ -1,6 +1,7 @@
 import { Distritos } from './../../Interfaces/distritos';
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
+import { CountriesService } from 'src/app/services/countries.service';
 
 @Component({
   selector: 'app-modal-info',
@@ -14,13 +15,15 @@ export class ModalInfoPage implements OnInit {
   name!: string;
   @Input() nombre: string ='';
   @Input() url: any;
-
   @Input() articles: Distritos[]=[];
-  constructor(private modalCtrl: ModalController) {
+
+  constructor(private modalCtrl: ModalController, private countriesService : CountriesService ) {
 
    }
 ngOnInit(): void {
-  this.articleFilter= this.articles
+  this.articleFilter= this.articles;
+  this.getGaleria();
+  console.log(this.articleFilter)
 }
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
@@ -37,4 +40,23 @@ ngOnInit(): void {
    console.log('Esto se filtro',this.articleFilter)
   }
 
+  getGaleria(){
+   if (this.articles[0].idprovincia===179){
+      this.countriesService.getGaleria("Huancayo").subscribe({
+        next:((data)=>{
+          data.map((distritos:any)  => {
+            this.articles.map((distritos2)=>{
+                if(distritos.fields.descripcio=== distritos2.nombre.toUpperCase()) {
+                  distritos2.img = distritos.img
+                }
+            })
+          })
+        }),
+        error: ((err: any)=>{console.log("error al cargar galeria", err)})
+      }
+      )
+
+}
+
+  }
 }

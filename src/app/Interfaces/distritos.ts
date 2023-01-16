@@ -1,5 +1,6 @@
 export interface Distritos {
   id: number,
   nombre: string,
-  idprovincia:number
+  idprovincia:number,
+  img:any
 }
